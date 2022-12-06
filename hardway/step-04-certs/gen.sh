@@ -88,8 +88,7 @@ cfssl gencert \
 
 # kubelet client certificates
 
-for ((NODE_INDEX = 0; NODE_INDEX < TF_NUM_NODES; NODE_INDEX++ )); do
-instance=node$NODE_INDEX
+for instance in $TF_NODE_LIST; do
 cat > ${instance}-csr.json <<EOF
 {
   "CN": "system:node:${instance}",
@@ -289,14 +288,21 @@ cfssl gencert \
 
 # distribute certs
 
-for (( NODE_INDEX=0; NODE_INDEX < TF_NUM_NODES; NODE_INDEX++ )); do
-    NODE=node${NODE_INDEX}
-    gcloud compute scp ca.pem ${NODE}-key.pem ${NODE}.pem ${NODE}:~/
+for instance in $TF_NODE_LIST; do
+    gcloud compute scp \
+      ca.pem ${instance}-key.pem \
+      ${instance}.pem \
+      ${instance}:~/
 done
 
-for (( CP_INDEX=0; CP_INDEX < TF_NUM_CPS; CP_INDEX++ )); do
-    CP=cp${CP_INDEX}
-    gcloud compute scp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem service-account-key.pem service-account.pem ${CP}:~/
+for instance in $TF_CP_LIST; do
+    gcloud compute scp \
+      ca.pem ca-key.pem \
+      kubernetes-key.pem \
+      kubernetes.pem \
+      service-account-key.pem \
+      service-account.pem \
+      ${instance}:~/
 done
 
 popd
