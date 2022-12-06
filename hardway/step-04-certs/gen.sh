@@ -5,18 +5,7 @@
 # 3. The script sections have been modified for both output folder and also
 #    to use GCP terraform outputs.
 
-eval $(terraform -chdir=../step-03-provisioning output -json | \
-  jq -r '{ 
-    TF_CP_IPS: .cp_ips.value|join(" "), 
-    TF_CP_IPS_LIST: .cp_ips.value|join(","), 
-    TF_NODE_IPS: .node_ips.value|join(" "), 
-    TF_NODE_IPS_LIST: .node_ips.value|join(","), 
-    TF_STATIC_IP_LB: .static_ip_lb.value, 
-    TF_PROJECT_ID: .project_id.value, 
-    TF_NUM_CPS: .num_cps.value, 
-    TF_NUM_NODES: .num_nodes.value 
-  } | to_entries | .[] | .key + "=" + (.value|@sh)')
-
+source ../common/get-vars.sh
 
 gcloud config set project $TF_PROJECT_ID
 
