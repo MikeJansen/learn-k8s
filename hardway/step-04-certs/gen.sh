@@ -5,16 +5,18 @@
 # 3. The script sections have been modified for both output folder and also
 #    to use GCP terraform outputs.
 
+eval $(terraform -chdir=../step-03-provisioning output -json | \
+  jq -r '{ 
+    TF_CP_IPS: .cp_ips.value|join(" "), 
+    TF_CP_IPS_LIST: .cp_ips.value|join(","), 
+    TF_NODE_IPS: .node_ips.value|join(" "), 
+    TF_NODE_IPS_LIST: .node_ips.value|join(","), 
+    TF_STATIC_IP_LB: .static_ip_lb.value, 
+    TF_PROJECT_ID: .project_id.value, 
+    TF_NUM_CPS: .num_cps.value, 
+    TF_NUM_NODES: .num_nodes.value 
+  } | to_entries | .[] | .key + "=" + (.value|@sh)')
 
-TF_OUTPUTS=$(terraform -chdir=../step-03-provisioning output -json)
-TF_CP_IPS=$(echo $TF_OUTPUTS | jq -r '.cp_ips.value[]')
-TF_NODE_IPS=$(echo $TF_OUTPUTS | jq -r '.node_ips.value[]')
-TF_STATIC_IP_LB=$(echo $TF_OUTPUTS | jq -r '.static_ip_lb.value')
-TF_PROJECT_ID=$(echo $TF_OUTPUTS | jq -r '.project_id.value')
-TF_NUM_CPS=$(echo $TF_OUTPUTS | jq -r '.num_cps.value')
-TF_NUM_NODES=$(echo $TF_OUTPUTS | jq -r '.num_nodes.value')
-
-TF_CP_IPS_LIST=$(echo $TF_CP_IPS|tr -s ' ' ',')
 
 gcloud config set project $TF_PROJECT_ID
 
