@@ -306,3 +306,10 @@ for instance in $TF_CP_LIST; do
 done
 
 popd
+
+# Skipping symbolic link headaches
+# Copy to artifacts folder 
+
+mkdir -p ../artifacts/certs
+rm ../artifacts/certs/*
+cp output/* ../artifacts/certs
