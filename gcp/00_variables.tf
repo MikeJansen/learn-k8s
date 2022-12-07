@@ -42,3 +42,7 @@ locals {
   cp_cidr_base = cidrsubnet(var.vpc_cidr, 1, 0)
   node_cidr_base = cidrsubnet(var.vpc_cidr, 1, 1)
 }
+
+locals {
+  service_ip = cidrhost(var.service_cidr_base, 1)
+}

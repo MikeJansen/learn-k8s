@@ -29,3 +29,8 @@ output "pod_cidr_base" {
 output "service_cidr_base" {
     value = var.service_cidr_base
 }
+
+output "service_ip" {
+    value = local.service_ip
+}
+

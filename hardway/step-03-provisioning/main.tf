@@ -40,3 +40,7 @@ output "pod_cidr_base" {
 output "service_cidr_base" {
     value = module.gcp.service_cidr_base
 }
+
+output "service_ip" {
+    value = module.gcp.service_ip
+}

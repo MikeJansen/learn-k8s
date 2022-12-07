@@ -248,7 +248,7 @@ cfssl gencert \
   -ca=ca.pem \
   -ca-key=ca-key.pem \
   -config=ca-config.json \
-  -hostname=10.32.0.1,${TF_CP_IPS_LIST},${TF_STATIC_IP_LB},127.0.0.1,${KUBERNETES_HOSTNAMES} \
+  -hostname=${TF_SERVICE_IP},${TF_CP_IPS_LIST},${TF_STATIC_IP_LB},127.0.0.1,${KUBERNETES_HOSTNAMES} \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
 
