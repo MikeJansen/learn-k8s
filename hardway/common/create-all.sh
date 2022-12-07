@@ -15,7 +15,7 @@ cd ../step-05-config-files
 ./gen-config-files.sh
 
 cd ../step-06-encryption
-./gen-ecnrypt.sh
+./gen-encrypt.sh
 
 cd ../step-07-bootstrap-etcd
 ./bootstrap-etcd.sh
