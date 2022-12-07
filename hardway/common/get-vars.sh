@@ -21,3 +21,5 @@ for (( IDX=0; IDX < TF_NUM_NODES; IDX++)); do
 done
 
 TF_COMPUTE_LIST="$TF_CP_LIST $TF_NODE_LIST"
+
+K8S_CLUSTER_NAME=k8s-the-hard-way
