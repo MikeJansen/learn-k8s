@@ -28,3 +28,12 @@ If you're following along with what I'm doing, here's what you need:
 
 I started with [Linux Foundation Kubernetes Fundamentals LFS258](https://trainingportal.linuxfoundation.org/learn/course/kubernetes-fundamentals-lfs258).  This is a paid class.  (I won't share stuff from the class, just what I'm doing on side exercises.)  [Kubernetes the Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way) was referenced as a good place to learn how to manually install Kubernetes, so I'm detouring to work through it.
 
+## Configurability Scratch Pad
+
+* Control Plane CIDR/IPs
+* Node CIDR/IPs
+* Service Cluster CIDR
+* Pod Cluster CIDR
+* Number of Controllers
+* Number of Nodes
+

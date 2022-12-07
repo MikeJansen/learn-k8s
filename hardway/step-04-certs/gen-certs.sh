@@ -286,24 +286,6 @@ cfssl gencert \
 
 }
 
-# distribute certs
-
-for instance in $TF_NODE_LIST; do
-    gcloud compute scp \
-      ca.pem ${instance}-key.pem \
-      ${instance}.pem \
-      ${instance}:~/
-done
-
-for instance in $TF_CP_LIST; do
-    gcloud compute scp \
-      ca.pem ca-key.pem \
-      kubernetes-key.pem \
-      kubernetes.pem \
-      service-account-key.pem \
-      service-account.pem \
-      ${instance}:~/
-done
-
 popd
 
+./distrib-certs.sh

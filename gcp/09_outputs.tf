@@ -21,3 +21,11 @@ output "num_cps" {
 output "num_nodes" {
     value = var.num_nodes
 }
+
+output "pod_cidr_base" {
+    value = var.pod_cidr_base
+}
+
+output "service_cidr_base" {
+    value = var.service_cidr_base
+}

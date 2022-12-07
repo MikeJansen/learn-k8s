@@ -5,7 +5,6 @@ terraform {
 module "gcp" {
     source = "../../gcp"
 
-    project_id_suffix = "hardway-04"
     num_cps = 3
     num_nodes = 3
 }
@@ -32,4 +31,12 @@ output "num_cps" {
 
 output "num_nodes" {
     value = module.gcp.num_nodes
+}
+
+output "pod_cidr_base" {
+    value = module.gcp.pod_cidr_base
+}
+
+output "service_cidr_base" {
+    value = module.gcp.service_cidr_base
 }

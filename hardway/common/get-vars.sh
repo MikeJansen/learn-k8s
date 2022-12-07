@@ -7,7 +7,9 @@ eval $(terraform -chdir=../step-03-provisioning output -json | \
     TF_STATIC_IP_LB: .static_ip_lb.value, 
     TF_PROJECT_ID: .project_id.value, 
     TF_NUM_CPS: .num_cps.value, 
-    TF_NUM_NODES: .num_nodes.value 
+    TF_NUM_NODES: .num_nodes.value,
+    TF_POD_CIDR: .pod_cidr_base.value,
+    TF_SERVICE_CIDR: .service_cidr_base.value
   } | to_entries | .[] | .key + "=" + (.value|@sh)')
   
 TF_CP_LIST=''

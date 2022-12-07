@@ -31,6 +31,13 @@ variable "pod_cidr_base" {
   type = string
   description = "Base CIDR for pod cidrs"
 }
+
+variable "service_cidr_base" {
+  default = "10.32.0.0/24"
+  type = string
+  description = "Base CIDR for pod cidrs"
+}
+
 locals {
   cp_cidr_base = cidrsubnet(var.vpc_cidr, 1, 0)
   node_cidr_base = cidrsubnet(var.vpc_cidr, 1, 1)
