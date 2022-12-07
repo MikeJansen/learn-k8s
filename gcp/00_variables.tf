@@ -8,11 +8,6 @@ variable "zone" {
   type= string
 }
 
-variable "project_id_suffix" {
-  default = "20221205"
-  type = string
-}
-
 variable "num_cps" {
   default = 1
   type = number
