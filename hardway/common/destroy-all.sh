@@ -6,6 +6,5 @@ terraform destroy
 
 cd ..
 rm -rf artifacts
-rm -rf step-04-certs/output
 
 popd

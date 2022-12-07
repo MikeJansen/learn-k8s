@@ -5,7 +5,7 @@ terraform {
 module "gcp" {
     source = "../../gcp"
 
-    project_id_suffix = "hardway-03"
+    project_id_suffix = "hardway-04"
     num_cps = 3
     num_nodes = 3
 }

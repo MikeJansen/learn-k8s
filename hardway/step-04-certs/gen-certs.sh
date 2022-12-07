@@ -9,8 +9,8 @@ source ../common/get-vars.sh
 
 gcloud config set project $TF_PROJECT_ID
 
-mkdir -p output
-pushd output
+mkdir -p ../artifacts/certs
+pushd ../artifacts/certs
 
 # ca
 {
@@ -307,9 +307,3 @@ done
 
 popd
 
-# Skipping symbolic link headaches
-# Copy to artifacts folder 
-
-mkdir -p ../artifacts/certs
-rm ../artifacts/certs/*
-cp output/* ../artifacts/certs

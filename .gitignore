@@ -1,5 +1,4 @@
 .terraform*
 terraform.tfstate*
 .terraform/
-hardway/step-04-certs/output/
 hardway/artifacts/
