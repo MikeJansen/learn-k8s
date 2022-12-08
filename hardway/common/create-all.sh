@@ -20,4 +20,7 @@ cd ../step-06-encryption
 cd ../step-07-bootstrap-etcd
 ./bootstrap-etcd.sh
 
+cd ../step-08-bootstrap-controlplane
+./bootstrap-control-plane.sh
+
 popd

@@ -1,5 +1,9 @@
 #!/bin/env bash
 
+echo '---------------------------------------------------------------'
+echo 'Step 5 - gen-config-files.sh'
+echo '---------------------------------------------------------------'
+
 source ../common/get-vars.sh
 pushd ../artifacts/certs
 mkdir -p ../configs

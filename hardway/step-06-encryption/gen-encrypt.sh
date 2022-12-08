@@ -1,5 +1,9 @@
 #!/bin/env bash
 
+echo '---------------------------------------------------------------'
+echo 'Step 6 - gen-encrypt.sh'
+echo '---------------------------------------------------------------'
+
 source ../common/get-vars.sh
 
 mkdir -p ../artifacts/encrypt

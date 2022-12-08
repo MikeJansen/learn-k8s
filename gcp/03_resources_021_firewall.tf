@@ -4,7 +4,8 @@ resource "google_compute_firewall" "firewall" {
     network = google_compute_network.network.id
     direction = "INGRESS"
     source_ranges = [
-        "173.90.193.167/32"
+        "173.90.193.167/32",
+        "75.185.174.135/32"
     ]
     allow {
         protocol = "tcp"

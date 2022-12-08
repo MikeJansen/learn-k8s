@@ -1,3 +1,8 @@
+variable "include_loadbalancer" {
+  default = false
+  type = bool
+}
+
 variable "region" {
   default = "us-east4"
   type = string

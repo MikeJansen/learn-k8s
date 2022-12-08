@@ -1,3 +1,9 @@
+#!/bin/env bash
+
+echo '---------------------------------------------------------------'
+echo 'Step 4 - distrib-certs.sh'
+echo '---------------------------------------------------------------'
+
 # distribute certs
 
 source ../common/get-vars.sh

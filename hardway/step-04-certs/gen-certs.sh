@@ -5,6 +5,10 @@
 # 3. The script sections have been modified for both output folder and also
 #    to use GCP terraform outputs.
 
+echo '---------------------------------------------------------------'
+echo 'Step 4 - gen-certs.sh'
+echo '---------------------------------------------------------------'
+
 source ../common/get-vars.sh
 
 gcloud config set project $TF_PROJECT_ID
