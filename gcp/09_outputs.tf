@@ -34,3 +34,6 @@ output "service_ip" {
     value = local.service_ip
 }
 
+output "cluster_dns_ip" {
+    value = local.cluster_dns_ip
+}

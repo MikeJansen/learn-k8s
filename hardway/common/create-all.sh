@@ -23,4 +23,7 @@ cd ../step-07-bootstrap-etcd
 cd ../step-08-bootstrap-controlplane
 ./bootstrap-control-plane.sh
 
+cd ../step-09-bootstrap-worker-nodes
+./bootstrap-worker-nodes.sh
+
 popd
