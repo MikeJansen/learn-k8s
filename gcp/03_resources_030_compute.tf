@@ -68,7 +68,7 @@ resource "google_compute_instance" "node" {
     }
 
     metadata = {
-        pod-cidr = cidrsubnet(var.pod_cidr_base, 5, count.index)
+        pod-cidr = local.pod_node_cidrs[count.index]
     }
 
 }

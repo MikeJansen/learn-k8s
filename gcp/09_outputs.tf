@@ -37,3 +37,7 @@ output "service_ip" {
 output "cluster_dns_ip" {
     value = local.cluster_dns_ip
 }
+
+output "pod_node_cidrs" {
+    value = local.pod_node_cidrs
+}

@@ -26,4 +26,7 @@ cd ../step-08-bootstrap-controlplane
 cd ../step-09-bootstrap-worker-nodes
 ./bootstrap-worker-nodes.sh
 
+cd ../step-10-configure-kubectl
+./configure-kubectl.sh
+
 popd

@@ -6,6 +6,7 @@ POD_CIDR=$3
 SERVICE_CIDR=$4
 ETCD_SERVERS=$5
 CLUSTER_DNS_IP=$6
+POD_NODE_CIDR=$7
 
 if [[ -d '/etc/cni/net.d' ]]; then
     exit
@@ -66,7 +67,7 @@ cat <<EOF | sudo tee /etc/cni/net.d/10-bridge.conf
     "ipam": {
         "type": "host-local",
         "ranges": [
-          [{"subnet": "${POD_CIDR}"}]
+          [{"subnet": "${POD_NODE_CIDR}"}]
         ],
         "routes": [{"dst": "0.0.0.0/0"}]
     }
@@ -140,7 +141,7 @@ authorization:
 clusterDomain: "cluster.local"
 clusterDNS:
   - "${CLUSTER_DNS_IP}"
-podCIDR: "${POD_CIDR}"
+podCIDR: "${POD_NODE_CIDR}"
 resolvConf: "/run/systemd/resolve/resolv.conf"
 runtimeRequestTimeout: "15m"
 tlsCertFile: "/var/lib/kubelet/${HOSTNAME}.pem"

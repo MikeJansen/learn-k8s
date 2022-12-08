@@ -48,4 +48,5 @@ locals {
   node_cidr_base = cidrsubnet(var.vpc_cidr, 1, 1)
   service_ip = cidrhost(var.service_cidr_base, 1)
   cluster_dns_ip = cidrhost(var.service_cidr_base, 10)
+  pod_node_cidrs = [for idx in range(var.num_nodes): cidrsubnet(var.pod_cidr_base, 5, idx)]
 }
