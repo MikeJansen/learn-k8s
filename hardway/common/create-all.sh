@@ -32,4 +32,7 @@ cd ../step-10-configure-kubectl
 cd ../step-12-deploy-coredns
 ./deploy-coredns.sh
 
+cd ../step-13-smoke-test
+./smoke-test.sh
+
 popd

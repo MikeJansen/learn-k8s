@@ -10,7 +10,7 @@ echo '---------------------------------------------------------------'
 kubectl create secret generic kubernetes-the-hard-way \
   --from-literal="mykey=mydata"
 
-gcloud compute ssh controller-0 \
+gcloud compute ssh cp0 \
   --command "sudo ETCDCTL_API=3 etcdctl get \
   --endpoints=https://127.0.0.1:2379 \
   --cacert=/etc/etcd/ca.pem \
@@ -18,9 +18,12 @@ gcloud compute ssh controller-0 \
   --key=/etc/etcd/kubernetes-key.pem\
   /registry/secrets/default/kubernetes-the-hard-way | hexdump -C"
 
+kubectl delete secret kubernetes-the-hard-way --force
+
 # test deployments
 
 kubectl create deployment nginx --image=nginx
+sleep 10
 kubectl get pods -l app=nginx
 
 # test port forwarding
@@ -28,6 +31,7 @@ kubectl get pods -l app=nginx
 POD_NAME=$(kubectl get pods -l app=nginx -o jsonpath="{.items[0].metadata.name}")
 kubectl port-forward $POD_NAME 8080:80 &
 K8S_PID=$!
+sleep 2
 curl --head http://127.0.0.1:8080
 kill -9 $K8S_PID
 
@@ -44,3 +48,8 @@ gcloud compute firewall-rules create kubernetes-the-hard-way-allow-nginx-service
   --network network
 EXTERNAL_IP=$(gcloud compute instances describe node0 \
   --format 'value(networkInterfaces[0].accessConfigs[0].natIP)')
+curl -I http://${EXTERNAL_IP}:${NODE_PORT}
+gcloud compute firewall-rules delete kubernetes-the-hard-way-allow-nginx-service --quiet
+
+kubectl delete service nginx
+kubectl delete deployments nginx
