@@ -29,4 +29,7 @@ cd ../step-09-bootstrap-worker-nodes
 cd ../step-10-configure-kubectl
 ./configure-kubectl.sh
 
+cd ../step-12-deploy-coredns
+./deploy-coredns.sh
+
 popd

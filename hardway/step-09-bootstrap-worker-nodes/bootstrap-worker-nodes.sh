@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 echo '---------------------------------------------------------------'
-echo 'Step 9 - bootstrap-w.sh'
+echo 'Step 9 - bootstrap-worker-nodes.sh'
 echo '---------------------------------------------------------------'
 
 source ../common/get-vars.sh

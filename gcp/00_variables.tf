@@ -37,6 +37,7 @@ variable "pod_cidr_base" {
   description = "Base CIDR for pod cidrs"
 }
 
+# CoreDNS default deployment depends on this so don't change without changing CoreDNS deployment
 variable "service_cidr_base" {
   default = "10.32.0.0/24"
   type = string
@@ -47,6 +48,7 @@ locals {
   cp_cidr_base = cidrsubnet(var.vpc_cidr, 1, 0)
   node_cidr_base = cidrsubnet(var.vpc_cidr, 1, 1)
   service_ip = cidrhost(var.service_cidr_base, 1)
+  # CoreDNS default deployment depends on this so don't change without changing CoreDNS deployment
   cluster_dns_ip = cidrhost(var.service_cidr_base, 10)
   pod_node_cidrs = [for idx in range(var.num_nodes): cidrsubnet(var.pod_cidr_base, 5, idx)]
 }
