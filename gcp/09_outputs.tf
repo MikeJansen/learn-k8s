@@ -1,7 +1,3 @@
-output "project_id" {
-    value = google_project.project.project_id
-}
-
 output "static_ip_lb" {
     value = google_compute_address.static_ip_lb.address
 }
@@ -40,4 +36,16 @@ output "cluster_dns_ip" {
 
 output "pod_node_cidrs" {
     value = local.pod_node_cidrs
+}
+
+output "project_id" {
+    value = var.project_id
+}
+
+output "region" {
+    value = var.region
+}
+
+output "zone" {
+    value = var.zone
 }

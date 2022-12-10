@@ -1,12 +1,28 @@
 #!/bin/env bash
 
+source gcloud-login.sh
+
 pushd ../step-03-provisioning
 
 terraform init
-terraform apply
+terraform apply -var project_id=$(gcloud config get project)
+
+cd ../common
+source get-vars.sh
+if [[ $TF_PROJECT_ID == '' ]]; then
+    echo 'Terraform did not apply successfully.'
+    exit
+fi
+
+gcloud config set compute/region $TF_REGION
+gcloud config set compute/zone $TF_ZONE
 
 # let the compute settle to avoid possible SSH key race condition
 sleep 10
+
+touch delete.me
+gcloud compute scp --force-key-file-overwrite delete.me cp0:~/ < /dev/null
+rm delete.me
 
 cd ../step-04-certs
 ./gen-certs.sh

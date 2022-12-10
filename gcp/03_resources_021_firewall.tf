@@ -1,5 +1,5 @@
 resource "google_compute_firewall" "firewall" {
-    project = google_project.project.project_id
+    # project = google_project.project.project_id
     name = "ingress-ssh"
     network = google_compute_network.network.id
     direction = "INGRESS"
@@ -19,7 +19,7 @@ resource "google_compute_firewall" "firewall" {
 }
 
 resource "google_compute_firewall" "firewall_internal" {
-    project = google_project.project.project_id
+    # project = google_project.project.project_id
     name = "ingress-internal"
     network = google_compute_network.network.id
     direction = "INGRESS"
@@ -33,7 +33,7 @@ resource "google_compute_firewall" "firewall_internal" {
 }
 
 resource "google_compute_firewall" "firewall_egress" {
-    project = google_project.project.project_id
+    # project = google_project.project.project_id
     name = "egress"
     network = google_compute_network.network.id
     direction = "EGRESS"

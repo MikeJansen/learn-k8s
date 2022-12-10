@@ -11,8 +11,6 @@ echo '---------------------------------------------------------------'
 
 source ../common/get-vars.sh
 
-gcloud config set project $TF_PROJECT_ID
-
 mkdir -p ../artifacts/certs
 pushd ../artifacts/certs
 

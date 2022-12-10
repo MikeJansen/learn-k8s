@@ -12,7 +12,9 @@ eval $(terraform -chdir=../step-03-provisioning output -json gcp | \
     TF_SERVICE_CIDR: .service_cidr_base,
     TF_SERVICE_IP: .service_ip,
     TF_CLUSTER_DNS_IP: .cluster_dns_ip,
-    TF_POD_NODE_CIDRS: .pod_node_cidrs|join(" ")
+    TF_POD_NODE_CIDRS: .pod_node_cidrs|join(" "),
+    TF_REGION: .region,
+    TF_ZONE: .zone
   } | to_entries | .[] | .key + "=" + (.value|@sh)')
   
 CP_LIST=()

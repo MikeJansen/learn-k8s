@@ -2,9 +2,8 @@ terraform {
    
 }
 
-variable "include_loadbalancer" {
-  default = false
-  type = bool
+variable "project_id" {
+  type = string
 }
 
 module "gcp" {
@@ -12,7 +11,7 @@ module "gcp" {
 
     num_cps = 3
     num_nodes = 3
-    include_loadbalancer = var.include_loadbalancer
+    project_id = var.project_id
 }
 
 output "gcp" {

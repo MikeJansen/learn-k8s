@@ -1,6 +1,5 @@
 resource "google_compute_http_health_check" "kubernetes" {
-    count = var.include_loadbalancer ? 1 : 0
-    project = google_project.project.project_id
+    # project = google_project.project.project_id
     name = "kubernetes"
     description = "Kubernetes health check"
     host = "kubernetes.default.svc.cluster.local"
@@ -8,8 +7,7 @@ resource "google_compute_http_health_check" "kubernetes" {
 }
 
 resource "google_compute_firewall" "kubernetes-allow-health-check" {
-    count = var.include_loadbalancer ? 1 : 0
-    project = google_project.project.project_id
+    # project = google_project.project.project_id
     name = "kubernetes-allow-health-check"
     network = google_compute_network.network.name
     source_ranges = [ 
@@ -24,21 +22,19 @@ resource "google_compute_firewall" "kubernetes-allow-health-check" {
 }
 
 resource "google_compute_target_pool" "kubernetes_target_pool" {
-    count = var.include_loadbalancer ? 1 : 0
-    project = google_project.project.project_id
+    # project = google_project.project.project_id
     name = "kubernetes-target-pool"
     health_checks = [
-        google_compute_http_health_check.kubernetes[0].id
+        google_compute_http_health_check.kubernetes.id
     ]
     instances = google_compute_instance.cp[*].self_link
 }
 
 resource "google_compute_forwarding_rule" "kubernetes_forwarding_rule" {
-    count = var.include_loadbalancer ? 1 : 0
-    project = google_project.project.project_id
+    # project = google_project.project.project_id
     name = "kubernetes-forwarding-rule"
     port_range = "6443-6443"
     ip_address = google_compute_address.static_ip_lb.address
-    target = google_compute_target_pool.kubernetes_target_pool[0].id
+    target = google_compute_target_pool.kubernetes_target_pool.id
     region = var.region
 }

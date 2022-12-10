@@ -37,3 +37,13 @@ I started with [Linux Foundation Kubernetes Fundamentals LFS258](https://trainin
 * Number of Controllers
 * Number of Nodes
 
+## Dockerfile is here!
+
+I added a Dockerfile to do all the building and to simplify running this as an example.  I do not have Windows support yet for launching, but you can use WSL2 (if you do, put the source repo on the Linux file system.)
+
+Prequisites should be:
+1. Docker
+2. Google Account created with a project
+3. gcloud installed, configured, authenticated with owner permissions (sorry, you can hack hardway-exec.sh if you want least/lesser privilege), and default project set.
+
+Checkout this repo and execute `./hardway-create.sh` from the root to create and `hardway-destroy.sh` to destroy.

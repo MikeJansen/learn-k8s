@@ -1,6 +1,6 @@
 resource "google_compute_instance" "cp" {
     count = var.num_cps
-    project = google_project.project.project_id
+    # project = google_project.project.project_id
     name = "cp${count.index}"
     machine_type = "e2-standard-2"
     zone = var.zone
@@ -35,7 +35,7 @@ resource "google_compute_instance" "cp" {
 
 resource "google_compute_instance" "node" {
     count = var.num_nodes
-    project = google_project.project.project_id
+    # project = google_project.project.project_id
     name = "node${count.index}"
     machine_type = "e2-standard-2"
     zone = var.zone

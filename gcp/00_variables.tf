@@ -1,6 +1,5 @@
-variable "include_loadbalancer" {
-  default = false
-  type = bool
+variable "project_id" {
+  type = string
 }
 
 variable "region" {
