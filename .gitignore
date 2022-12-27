@@ -5,4 +5,8 @@ hardway/artifacts/
 *.dtmp
 *.bkp
 k8s-hardway.json
-
+lfs258/
+.venv/
+*.out
+*.crt
+*.key
