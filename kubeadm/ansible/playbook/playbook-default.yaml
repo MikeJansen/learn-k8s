@@ -1,0 +1,9 @@
+- name: play1
+  hosts: myvirtualmachines
+  tasks:
+  - name: ping
+    ansible.builtin.ping:
+  - name: msg
+    ansible.builtin.debug:
+      msg: Hello world
+

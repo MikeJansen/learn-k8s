@@ -1,0 +1,12 @@
+- name: play1
+  hosts: k8s
+  tasks:
+  - name: ping
+    ansible.builtin.ping:
+  - name: msg
+    ansible.builtin.debug:
+      msg: Hello world, from {{ ansible_facts['nodename'] }}
+  - name: facts
+    ansible.builtin.debug:
+      var: ansible_facts
+

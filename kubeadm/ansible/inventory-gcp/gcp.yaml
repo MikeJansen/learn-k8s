@@ -1,0 +1,18 @@
+plugin: gcp_compute
+zones:
+- us-east4-a
+projects:
+- learn-k8s-1234
+auth_kind: application
+hostnames:
+- name
+compose:
+  ansible_host: networkInterfaces[0].accessConfigs[0].natIP
+filters:
+- labels.role = k8s
+keyed_groups:
+- key: labels.k8s_role
+  parent_group: k8s
+  prefix: k8s
+groups:
+  gcp: True

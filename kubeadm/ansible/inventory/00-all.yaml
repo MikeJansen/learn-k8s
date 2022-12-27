@@ -1,0 +1,4 @@
+all:
+  hosts:
+    cp0:
+    node0:
