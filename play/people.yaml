@@ -1,0 +1,9 @@
+apiVersion: crd.cr0w.co/v1
+kind: Person
+metadata:
+  name: mike-person
+spec:
+  firstName: Michael
+  lastName: Jansen
+  nickName: Mike
+

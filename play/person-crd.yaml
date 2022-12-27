@@ -1,0 +1,42 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: people.crd.cr0w.co
+spec:
+  group: crd.cr0w.co
+  names:
+    kind: Person
+    listKind: PersonList
+    plural: people
+    singular: person
+  preserveUnknownFields: false
+  scope: Cluster
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          apiVersion:
+            description: api version
+            type: string
+          kind:
+            description: kind of object
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: the actual spec
+            type: object
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              nickName:
+                type: string
+            required:
+            - firstName
+            - lastName
+    served: true
+    storage: true
