@@ -12,6 +12,12 @@ resource "google_compute_instance" "cp" {
         }
     }
 
+    labels = {
+      role = "k8s"
+      k8s_role = "cp"
+      name = "cp${count.index}"
+    }
+
     network_interface {
       subnetwork = google_compute_subnetwork.cp_subnets[count.index].id
       network_ip = cidrhost(google_compute_subnetwork.cp_subnets[count.index].ip_cidr_range, 5)
@@ -47,6 +53,12 @@ resource "google_compute_instance" "node" {
         }
     }
 
+    labels = {
+      role = "k8s"
+      k8s_role = "node"
+      name = "node${count.index}"
+    }
+
     network_interface {
       subnetwork = google_compute_subnetwork.node_subnets[count.index].id
       network_ip = cidrhost(google_compute_subnetwork.node_subnets[count.index].ip_cidr_range, 5)
@@ -54,7 +66,7 @@ resource "google_compute_instance" "node" {
       }
     }
 
-        can_ip_forward = true
+    can_ip_forward = true
     
     service_account {
       scopes = [

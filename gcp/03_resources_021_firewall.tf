@@ -11,7 +11,7 @@ resource "google_compute_firewall" "firewall" {
         [for ip in google_compute_instance.node[*].network_interface[0].access_config[0].nat_ip: "${ip}/32"])
     allow {
         protocol = "tcp"
-        ports = [ "22", "6443" ]
+        ports = [ "22", "6443", "30000-40000" ]
     }
     allow {
         protocol = "icmp"
@@ -25,7 +25,8 @@ resource "google_compute_firewall" "firewall_internal" {
     direction = "INGRESS"
     source_ranges = [
         var.vpc_cidr,
-        var.pod_cidr_base
+        var.pod_cidr_base,
+        var.service_cidr_base
     ]
     allow {
         protocol = "all"
