@@ -85,3 +85,43 @@ resource "google_compute_instance" "node" {
 
 }
 
+resource "google_compute_instance" "haproxy" {
+    count = var.haproxy ? 1 : 0
+    name = "haproxy${count.index}"
+    machine_type = "e2-standard-2"
+    zone = var.zone
+
+    boot_disk {
+        initialize_params {
+            image = "ubuntu-2004-focal-v20221202"
+            size = 200
+        }
+    }
+
+    labels = {
+      role = "k8s"
+      k8s_role = "haproxy"
+      name = "haproxy${count.index}"
+    }
+
+    network_interface {
+      subnetwork = local.haproxy_subnets[count.index]
+      network_ip = local.haproxy_addrs[count.index]
+      access_config {
+      }
+    }
+
+    can_ip_forward = true
+
+    service_account {
+      scopes = [
+        "compute-rw",
+        "storage-ro",
+        "service-management",
+        "service-control",
+        "logging-write",
+        "monitoring"
+      ]
+    }
+}
+

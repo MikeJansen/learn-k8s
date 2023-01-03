@@ -11,7 +11,7 @@ resource "google_compute_firewall" "firewall" {
         [for ip in google_compute_instance.node[*].network_interface[0].access_config[0].nat_ip: "${ip}/32"])
     allow {
         protocol = "tcp"
-        ports = [ "22", "6443", "30000-40000" ]
+        ports = [ "22", "443", "6443", "9999", "30000-40000" ]
     }
     allow {
         protocol = "icmp"

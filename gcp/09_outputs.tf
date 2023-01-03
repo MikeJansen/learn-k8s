@@ -14,6 +14,14 @@ output "num_cps" {
     value = var.num_cps
 }
 
+output "haproxy_ip" {
+    value = var.haproxy ? google_compute_instance.haproxy[0].network_interface[0].network_ip : ""
+}
+
+output "haproxy_public_ip" {
+    value = var.haproxy ? google_compute_instance.haproxy[0].network_interface[0].access_config[0].nat_ip : ""
+}
+
 output "num_nodes" {
     value = var.num_nodes
 }
