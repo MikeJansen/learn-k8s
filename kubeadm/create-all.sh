@@ -1,4 +1,4 @@
 #!/bin/env bash
 
 terraform init
-terraform apply -var project_id=$(gcloud config get project)
+terraform apply -var project_id=$(gcloud config get project) -auto-approve

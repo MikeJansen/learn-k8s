@@ -14,7 +14,9 @@ eval $(terraform output -json gcp | \
     TF_CLUSTER_DNS_IP: .cluster_dns_ip,
     TF_POD_NODE_CIDRS: .pod_node_cidrs|join(" "),
     TF_REGION: .region,
-    TF_ZONE: .zone
+    TF_ZONE: .zone,
+    TF_HAPROXY_IP: .haproxy_ip,
+    TF_HAPROXY_PUBLIC_IP: .haproxy_public_ip
   } | to_entries | .[] | .key + "=" + (.value|@sh)')
   
 CP_LIST=()

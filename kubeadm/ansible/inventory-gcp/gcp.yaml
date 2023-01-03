@@ -8,6 +8,7 @@ hostnames:
 - name
 compose:
   ansible_host: networkInterfaces[0].accessConfigs[0].natIP
+  private_ip: networkInterfaces[0].network_ip
 filters:
 - labels.role = k8s
 keyed_groups:

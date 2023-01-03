@@ -1,6 +1,8 @@
 #!/bin/env bash
 
-gcloud compute instances start cp0 node0
-sleep 5
+source get-vars.sh
+gcloud compute instances start $TF_COMPUTE_LIST haproxy0
+sleep 20
 source create-all.sh
-gcloud compute ssh cp0 -- /bin/env bash -c "cd ~; kubectl uncordon cp0; kubectl uncordon node0"
+sleep 5
+kubectl uncordon $TF_CP_LIST; kubectl uncordon $TF_NODE_LIST
