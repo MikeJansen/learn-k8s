@@ -10,3 +10,7 @@ lfs258/
 *.out
 *.crt
 *.key
+cluster1/tmp
+cluster1/k_var*
+cluster1/kubeadm-config.yaml
+cluster1/metrics-server.values
